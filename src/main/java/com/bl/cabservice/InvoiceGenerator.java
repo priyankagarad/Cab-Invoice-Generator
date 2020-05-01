@@ -1,7 +1,9 @@
 package com.bl.cabservice;
 public class InvoiceGenerator {
-    public static void main(String args[])
+    private static final int COST_PER_MINUTE=1;
+    private static final double MINIMUM_COST_PER_KILOMETER=10;
+    public double calculateFare(double distance,int time)
     {
-        System.out.println("Welcome to Cab Invoice Generator ");
+        return distance*MINIMUM_COST_PER_KILOMETER+time*COST_PER_MINUTE;
     }
 }
