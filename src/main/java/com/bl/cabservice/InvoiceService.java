@@ -1,8 +1,14 @@
 package com.bl.cabservice;
-public class InvoiceGenerator {
+public class InvoiceService {
     private static final int COST_PER_MINUTE=1;
     private static final double MINIMUM_COST_PER_KILOMETER=10;
     private static final double MINIMUM_FARE=5;
+    private RideRepository rideRepository;
+
+    public InvoiceService()
+    {
+        this.rideRepository=new RideRepository();
+    }
 
     public double calculateFare(double distance,int time)
     {
@@ -19,5 +25,14 @@ public class InvoiceGenerator {
         }
         return new InvoiceSummery(rides.length,totalFare);
         }
+
+        public  void addRides(String userId,Ride[] rides)
+        {
+            rideRepository.addRides(userId,rides);
+        }
+
+    public InvoiceSummery getInvoiceSummary(String userId) {
+        return this.multipleRide(rideRepository.getRides(userId));
     }
+}
 
